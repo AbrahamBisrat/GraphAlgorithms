@@ -5,15 +5,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Compilations:	javac Graph.java
+ * Execution: 		java Graph input.txt
+ * Data Files: 		./graphData/tinyG.txt
+ * 					./graphData/medium.txt
+ * 					./graphData/large.txt
+ * 
+ * A graph, implemented using an array of sets
+ * Parallel edges and self-loops allowed.
+ * 
+ * Implementations : Adding edges to the graph.
+ * 					 iterating over all the vertices adjacent to a vertex.
+ * 					 methods for returning the degree of a vertex, the number of edges.
+ * 					 
  * 
  * @param <Y> the type of Object stored in the graph
  * @param <W> the type of weight
  * 
  *  
  * @author Er. Abraham Bisrat
+ * 
  */
 
-public class Graph<Y, W> {
+public class Graph {
+	private static final String NEWLINE = System.getProperty("line.separator");
+	
 	
 	/*
 	 * Node representation of each element

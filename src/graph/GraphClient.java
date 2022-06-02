@@ -31,7 +31,7 @@ package graph;
 
 public class GraphClient {
 
-    // maximum degree 
+    // maximum degree
     public static int maxDegree(Graph G) {
         int max = 0;
         for (int v = 0; v < G.V(); v++)
