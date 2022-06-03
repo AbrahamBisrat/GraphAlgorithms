@@ -1,9 +1,12 @@
 package bag;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /******************************************************************************
  *  Compilation:  javac Bag.java
  *  Execution:    java Bag < input.txt
- *  Dependencies: StdIn.java StdOut.java
  *
  *  A generic bag or multiset, implemented using a singly linked list.
  *
@@ -51,24 +54,9 @@ public class Bag<Item> implements Iterable<Item> {
         n = 0;
     }
 
-    /**
-     * Returns true if this bag is empty.
-     *
-     * @return {@code true} if this bag is empty;
-     *         {@code false} otherwise
-     */
-    public boolean isEmpty() {
-        return first == null;
-    }
+    public boolean isEmpty() { return first == null; }
 
-    /**
-     * Returns the number of items in this bag.
-     *
-     * @return the number of items in this bag
-     */
-    public int size() {
-        return n;
-    }
+    public int size() { return n; }
 
     /**
      * Adds the item to this bag.
@@ -107,27 +95,30 @@ public class Bag<Item> implements Iterable<Item> {
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
             Item item = current.item;
-            current = current.next; 
+            current = current.next;
             return item;
         }
     }
 
-    /**
-     * Unit tests the {@code Bag} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
+    // Read and display from file in arguments
+    public static void main(String[] args) throws IOException{
+    	
         Bag<String> bag = new Bag<String>();
-        while (!StdIn.isEmpty()) {
-            String item = StdIn.readString();
-            bag.add(item);
+        
+        for (int i = 0; i < args.length; i++) {
+            BufferedReader file = new BufferedReader(new FileReader(args[i]));
+            while (true) {
+                String row = file.readLine();
+                if (row == null)
+                    break;
+                bag.add(row);
+            }
+            file.close();
         }
-
-        StdOut.println("size of bag = " + bag.size());
-        for (String s : bag) {
-            StdOut.println(s);
-        }
+        
+        System.out.println("size of bag = " + bag.size());
+        for (String s : bag)
+            System.out.println(s);
     }
 
 }
