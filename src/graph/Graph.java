@@ -59,9 +59,6 @@ public class Graph {
 	 */
 	public Graph(BufferedReader file) {
 		try {
-//			Pattern p = Pattern.compile("^\\s*(\\d+)\\s+(\\d+)\\s+(\\d+)$");
-			Pattern p = Pattern.compile("^\\s*(\\d+)\\s+(\\d+)$");
-			Matcher m;
 			if(!file.ready()) throw new IllegalArgumentException("Argument is null");
 			
 			this.V = Integer.parseInt(file.readLine());
@@ -75,9 +72,8 @@ public class Graph {
 			
 			for(int i = 0; i < E; i++) {
 				if(!file.ready()) return;
-				m = p.matcher(file.readLine());
-				int v = Integer.parseInt(m.group(1));
-				int w = Integer.parseInt(m.group(2));
+				int v = file.read();
+				int w = file.read();
 				addEdge(v, w);
 			}
 					
@@ -130,11 +126,12 @@ public class Graph {
 	}
 	
 	public static void main(String[] args) throws IOException{
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		BufferedReader file = new BufferedReader(new FileReader(args[0]));
 		
 		Graph G;
-//		G = new Graph(file);
-		G = manualEntry();
+		G = new Graph(file);
+//		G = manualEntry();
 		
 		System.out.println(G);
 	}
