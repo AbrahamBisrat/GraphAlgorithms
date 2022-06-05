@@ -64,7 +64,7 @@ public class GraphClient {
         StdOut.println("vertex of maximum degree = " + maxDegree(G));
         StdOut.println("average degree           = " + avgDegree(G));
         StdOut.println("number of self loops     = " + numberOfSelfLoops(G));
-
+        
     }
 
 }

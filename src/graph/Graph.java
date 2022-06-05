@@ -80,6 +80,7 @@ public class Graph {
 		} catch (NoSuchElementException e) { 
 			throw new NoSuchElementException("Invalid input format in graph data");
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new RuntimeException("Something went wrong");
 		}
 	}
@@ -154,4 +155,5 @@ public class Graph {
 		
 		return G;
 	}
+
 }
