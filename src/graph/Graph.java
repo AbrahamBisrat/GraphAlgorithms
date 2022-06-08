@@ -136,7 +136,12 @@ public class Graph {
 		
 //		System.out.println(G);
 		BFS bfs = new BFS();
-		System.out.println("Connected Components : " + bfs.components(G));
+		System.out.println("Connected Components : " 
+							+ bfs.components(G));
+		System.out.println("hasPath ? 0 -> 2 " 
+							+ bfs.hasPath(G, 0, 2));
+		System.out.println("hasPath ? 0 -> 2 " 
+							+ bfs.hasPath(G, 2, 3));
 	}
 
 	private static Graph manualEntry() {
