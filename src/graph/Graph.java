@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import bag.Bag;
+import bfs.BFS;
 
 /**
  * Compilations:	javac Graph.java
@@ -86,6 +85,7 @@ public class Graph {
 	}
 	public int V() { return V; }
 	public int E() { return E; }
+	public Bag<Integer>[] adj() { return this.adj; }
 	
 	// Helper method to check validity
 	public void validateVertex(int v) {
@@ -127,14 +127,16 @@ public class Graph {
 	}
 	
 	public static void main(String[] args) throws IOException{
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+//		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		BufferedReader file = new BufferedReader(new FileReader(args[0]));
 		
 		Graph G;
 //		G = new Graph(file);
 		G = manualEntry();
 		
-		System.out.println(G);
+//		System.out.println(G);
+		BFS bfs = new BFS(G);
+		System.out.println("Connected Components : " + bfs.components());
 	}
 
 	private static Graph manualEntry() {
