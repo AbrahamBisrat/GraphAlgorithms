@@ -3,6 +3,7 @@ package graph;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import bag.Bag;
@@ -103,7 +104,7 @@ public class Graph {
 	}
 	
 	// returns a bag of vertices adjacent to vertex
-	public Iterable<Integer> adj(int v) {
+	public Bag<Integer> adj(int v) {
 		validateVertex(v);
 		return adj[v];
 	}
@@ -134,15 +135,32 @@ public class Graph {
 //		G = new Graph(file);
 		G = manualEntry();
 		
-//		System.out.println(G);
+//		p(G);
 		BFS bfs = new BFS();
-		System.out.println("Connected Components : " 
-							+ bfs.components(G));
-		System.out.println("hasPath ? 0 -> 2 " 
-							+ bfs.hasPath(G, 0, 2));
-		System.out.println("hasPath ? 0 -> 2 " 
-							+ bfs.hasPath(G, 2, 3));
+		bfsTests(G, bfs);
 	}
+
+	private static void bfsTests(Graph G, BFS bfs) {
+//		p("Connected Components : " + bfs.components(G));
+//		p("hasPath ? 0 -> 2 " + bfs.hasPath(G, 0, 2));
+//		p("hasPath ? 2 -> 3 " + bfs.hasPath(G, 2, 3));
+//		p("hasPath ? 2 -> 7 " + bfs.hasPath(G, 2, 7));
+//		p("hasPath ? 10 -> 12 " + bfs.hasPath(G, 10, 12));
+//		p("\n");
+//		p("hasLoop ? " + bfs.hasLoop(G));
+		Map<Integer, Bag<Integer>> adjList = bfs.matrixToList(G);
+		adjListToString(adjList);
+	}
+
+	private static void adjListToString(Map<Integer, Bag<Integer>> adjList) {
+		for(int vertex : adjList.keySet()) {
+			System.out.print(vertex + " : ");
+			for(int index : adjList.get(vertex))
+				System.out.print(index + " ");
+			System.out.println();
+		}
+	}
+	static void p(Object line) { System.out.println(line); }
 
 	private static Graph manualEntry() {
 		Graph G = new Graph(13);
