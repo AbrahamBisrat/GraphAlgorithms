@@ -42,23 +42,38 @@ public class BFS {
 	public boolean hasLoop(Graph graph) {
 		init();
 		boolean hasLoop = false;
+		/*
+		 * Keeps track of who discovered who
+		 * -1 for root
+		 */
 		Map<Integer, Integer> parents = new HashMap<>();
+		// mark the root element with -1
+		parents.put(matrixToList(graph).keySet().stream().toList().get(0), -1);
 		
 		for(int vertex : matrixToList(graph).keySet()) {
 			queue.add(vertex);
-			if(!visited.contains(vertex)) count++;
 			while(!queue.isEmpty()) {
 				int current = queue.poll();
 				for(int edge : graph.adj(current)) {
 					if(!visited.contains(edge)) {
 						queue.add(edge);
 						visited.add(edge);
-						p(edge);
+						parents.put(edge, current);
+					} else if(parents.containsKey(edge)) {
+						/*
+						 * The node has been discovered by other parent before
+						 * and is not the root element
+						 */
+						p("edge " + edge + "  current  " + current + " : " + parents);
+						p(parents.get(edge));
+						if(parents.get(edge) != current && parents.get(edge) != -1)
+							return true;
 					}
 				}
 				visited.add(current);
 			}
-		}	
+		}
+		p(parents);
 		return hasLoop;
 	}
 	public boolean hasPath(Graph graph, int src, int dst) {
@@ -92,9 +107,8 @@ public class BFS {
 	// decision made based on lookup and access time both O(1)
 	public Map<Integer, Bag<Integer>> matrixToList(Graph graph) {
 		Map<Integer, Bag<Integer>> adjList = new HashMap<>();
-		for(int v=0; v<graph.V(); v++) {
+		for(int v=0; v<graph.V(); v++)
 			adjList.put(v, graph.adj(v));
-		}
 		return adjList;
 	}
 }

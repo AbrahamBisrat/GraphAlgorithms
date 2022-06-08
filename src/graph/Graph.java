@@ -148,8 +148,9 @@ public class Graph {
 //		p("hasPath ? 10 -> 12 " + bfs.hasPath(G, 10, 12));
 //		p("\n");
 //		p("hasLoop ? " + bfs.hasLoop(G));
-		Map<Integer, Bag<Integer>> adjList = bfs.matrixToList(G);
-		adjListToString(adjList);
+//		Map<Integer, Bag<Integer>> adjList = bfs.matrixToList(G);
+//		adjListToString(adjList);
+		p(bfs.hasLoop(G));
 	}
 
 	private static void adjListToString(Map<Integer, Bag<Integer>> adjList) {
