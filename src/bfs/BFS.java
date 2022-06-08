@@ -16,15 +16,10 @@ import graph.Graph;
  */
 
 public class BFS {
-	private Graph graph;
-	private HashSet<Integer> visited = new HashSet<>();
 	private Queue<Integer> queue = new LinkedList<>();
 	private int count=0;
 	
-	public BFS(Graph g) {
-		this.graph=g;
-	}
-	void traverse(int vertex) {
+	void traverse(Graph graph, HashSet<Integer> visited, int vertex) {
 		queue.add(vertex);
 		if(!visited.contains(vertex)) count++;
 		while(!queue.isEmpty()) {
@@ -39,18 +34,24 @@ public class BFS {
 			visited.add(current);
 		}
 	}
-	boolean hasLoop() {
+	public boolean hasLoop() {
 		
 		return false;
 	}
-	boolean hasPath(int src, int dst) {
+	public boolean hasPath(int src, int dst) {
 		
 		
 		return false;
 	}
-	public int components() {
+	public int components(Graph graph) {
+		init();
+		HashSet<Integer> visited = new HashSet<>();
 		for(int v=0; v<graph.V(); v++)
-			traverse(v);
+			traverse(graph, visited, v);
 		return count;
+	}
+	void init() {
+		queue.clear();
+		count=0;
 	}
 }

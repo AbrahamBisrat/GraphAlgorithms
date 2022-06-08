@@ -135,8 +135,8 @@ public class Graph {
 		G = manualEntry();
 		
 //		System.out.println(G);
-		BFS bfs = new BFS(G);
-		System.out.println("Connected Components : " + bfs.components());
+		BFS bfs = new BFS();
+		System.out.println("Connected Components : " + bfs.components(G));
 	}
 
 	private static Graph manualEntry() {
