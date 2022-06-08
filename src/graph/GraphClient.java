@@ -56,15 +56,15 @@ public class GraphClient {
     } 
 
     public static void main(String[] args) {
-        In in = new In(args[0]);
-        Graph G = new Graph(in);
-        StdOut.println(G);
-
-
-        StdOut.println("vertex of maximum degree = " + maxDegree(G));
-        StdOut.println("average degree           = " + avgDegree(G));
-        StdOut.println("number of self loops     = " + numberOfSelfLoops(G));
-        
+//        In in = new In(args[0]);
+//        Graph G = new Graph(in);
+//        StdOut.println(G);
+//
+//
+//        StdOut.println("vertex of maximum degree = " + maxDegree(G));
+//        StdOut.println("average degree           = " + avgDegree(G));
+//        StdOut.println("number of self loops     = " + numberOfSelfLoops(G));
+//        
     }
 
 }

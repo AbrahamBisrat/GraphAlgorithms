@@ -131,8 +131,8 @@ public class Graph {
 		BufferedReader file = new BufferedReader(new FileReader(args[0]));
 		
 		Graph G;
-		G = new Graph(file);
-//		G = manualEntry();
+//		G = new Graph(file);
+		G = manualEntry();
 		
 		System.out.println(G);
 	}
