@@ -64,8 +64,6 @@ public class BFS {
 						 * The node has been discovered by other parent before
 						 * and is not the root element
 						 */
-						p("edge " + edge + "  current  " + current + " : " + parents);
-						p(parents.get(edge));
 						if(parents.get(edge) != current && parents.get(edge) != -1)
 							return true;
 					}
