@@ -141,6 +141,8 @@ public class Graph {
 		
 		p(G);
 		BFS bfs = new BFS();
+		
+		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
 		bfsTests(G, bfs);
 	}
 
