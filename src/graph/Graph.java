@@ -40,6 +40,8 @@ public class Graph {
 	private int E; // number of edges
 	
 	private Bag<Integer>[] adj; // adjacency matrix - Array of Bags
+
+	private static BufferedReader file;
 	
 	/*
 	 * Initializes an empty graph with required vertices and zero degrees
@@ -57,13 +59,14 @@ public class Graph {
 	 * Initialize Graph from file
 	 * File format -> No of vertices - No of Edges - pairs of vertices
 	 */
+//	@SuppressWarnings("unchecked")
 	public Graph(BufferedReader file) {
 		try {
 			if(!file.ready()) throw new IllegalArgumentException("Argument is null");
 			
 			this.V = Integer.parseInt(file.readLine());
 			
-			adj = (Bag<Integer>[]) new Bag[V];
+			adj = new Bag[V];
 			for(int v = 0; v < V; v++)
 				adj[v] = new Bag<Integer>();
 			
@@ -129,30 +132,32 @@ public class Graph {
 	
 	public static void main(String[] args) throws IOException{
 //		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-		BufferedReader file = new BufferedReader(new FileReader(args[0]));
+
+//		file = new BufferedReader(new FileReader(args[0]));
 		
 		Graph G;
 //		G = new Graph(file);
 		G = manualEntry();
 		
-//		p(G);
+		p(G);
 		BFS bfs = new BFS();
 		bfsTests(G, bfs);
 	}
 
 	private static void bfsTests(Graph G, BFS bfs) {
-//		p("Connected Components : " + bfs.components(G));
-//		p("hasPath ? 0 -> 2 " + bfs.hasPath(G, 0, 2));
-//		p("hasPath ? 2 -> 3 " + bfs.hasPath(G, 2, 3));
-//		p("hasPath ? 2 -> 7 " + bfs.hasPath(G, 2, 7));
-//		p("hasPath ? 10 -> 12 " + bfs.hasPath(G, 10, 12));
-//		p("\n");
-//		p("hasLoop ? " + bfs.hasLoop(G));
-//		Map<Integer, Bag<Integer>> adjList = bfs.matrixToList(G);
-//		adjListToString(adjList);
+		p("Connected Components : " + bfs.components(G));
+		p("hasPath ? 0 -> 2 " + bfs.hasPath(G, 0, 2));
+		p("hasPath ? 2 -> 3 " + bfs.hasPath(G, 2, 3));
+		p("hasPath ? 2 -> 7 " + bfs.hasPath(G, 2, 7));
+		p("hasPath ? 10 -> 12 " + bfs.hasPath(G, 10, 12));
+		p("\n");
+		p("hasLoop ? " + bfs.hasLoop(G));
+		Map<Integer, Bag<Integer>> adjList = bfs.matrixToList(G);
+		adjListToString(adjList);
 		p(bfs.hasLoop(G));
 	}
 
+	@SuppressWarnings("unused")
 	private static void adjListToString(Map<Integer, Bag<Integer>> adjList) {
 		for(int vertex : adjList.keySet()) {
 			System.out.print(vertex + " : ");
