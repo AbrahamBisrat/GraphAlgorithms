@@ -59,7 +59,6 @@ public class Graph {
 	 * Initialize Graph from file
 	 * File format -> No of vertices - No of Edges - pairs of vertices
 	 */
-//	@SuppressWarnings("unchecked")
 	public Graph(BufferedReader file) {
 		try {
 			if(!file.ready()) throw new IllegalArgumentException("Argument is null");
@@ -143,7 +142,6 @@ public class Graph {
 		BFS bfs = new BFS();
 		
 		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
-		bfsTests(G, bfs);
 	}
 
 	private static void bfsTests(Graph G, BFS bfs) {
