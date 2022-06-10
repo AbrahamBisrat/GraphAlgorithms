@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import bag.Bag;
 import bfs.BFS;
+import dfs.DFS;
 
 /**
  * Compilations:	javac Graph.java
@@ -138,10 +139,11 @@ public class Graph {
 //		G = new Graph(file);
 		G = manualEntry();
 		
-		p(G);
+//		p(G);
 		BFS bfs = new BFS();
 		
-		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
+//		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
+		DFS.traverse(G, 0);
 	}
 
 	private static void bfsTests(Graph G, BFS bfs) {

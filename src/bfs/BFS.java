@@ -22,7 +22,7 @@ public class BFS {
 	static void p(Object line) { System.out.println(line); }
 	HashSet<Integer> visited = new HashSet<>();
 	private Queue<Integer> queue = new LinkedList<>();
-	private int count=0; // TODO : move it out
+	private int count=0; // TODO: move it out
 	
 	void traverse(Graph graph, int vertex) {
 		queue.add(vertex);
@@ -43,8 +43,7 @@ public class BFS {
 		init();
 		boolean hasLoop = false;
 		/*
-		 * Keeps track of who discovered who
-		 * -1 for root
+		 * Keeps track of who discovered who and (-1) for root node
 		 */
 		Map<Integer, Integer> parents = new HashMap<>();
 		// mark the root element with -1
@@ -71,7 +70,7 @@ public class BFS {
 				visited.add(current);
 			}
 		}
-		p(parents);
+		p(parents); // print
 		return hasLoop;
 	}
 	public boolean hasPath(Graph graph, int src, int dst) {
