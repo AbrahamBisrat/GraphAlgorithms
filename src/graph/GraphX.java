@@ -1,7 +1,9 @@
 package graph;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Simpler light weight graph
@@ -25,17 +27,37 @@ public class GraphX {
 			adjLists[i] = new LinkedList<Integer>();
 	}
 	
-	// add to both - undirected
-	void addEdge(int x, int y) { adjLists[x].add(y); adjLists[y].add(x); }
+	void addEdge(int src, int dst) { adjLists[src].add(dst); adjLists[dst].add(src); }
+	void addEdgeDirected(int src, int dst) { adjLists[src].add(dst); }
 	
+	// Depth first search
+	void dfs(int vertex) {
+		Stack<Integer> stack = new Stack<>();
+		stack.push(vertex);
+		
+		while(!stack.isEmpty()) {
+			for(int edge : adjLists[vertex]) {
+//				if()
+			}
+		}
+	}
+
+	void dfsX(int vertex) {
+		visited[vertex] = true;
+		p(vertex);
+		
+		Iterator<Integer> iter = adjLists[vertex].listIterator();
+		while(iter.hasNext()) {
+			int adj = iter.next();
+			if(!visited[adj])
+				dfsX(adj);
+		}
+	}
 	
 	public static void main(String[] args) {
 		GraphX g = new GraphX(13);
 		init(g);
-		for(List<Integer> eachList : g.adjLists) {
-			eachList.forEach(System.out::print);
-			p("");
-		}
+		g.dfsX(1);
 	}
 	private static void init(GraphX G) {
 		G.addEdge(0, 5);
