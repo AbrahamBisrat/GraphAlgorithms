@@ -1,9 +1,10 @@
 package graph;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Set;
 
 /**
  * Simpler light weight graph
@@ -31,17 +32,6 @@ public class GraphX {
 	void addEdgeDirected(int src, int dst) { adjLists[src].add(dst); }
 	
 	// Depth first search
-	void dfs(int vertex) {
-		Stack<Integer> stack = new Stack<>();
-		stack.push(vertex);
-		
-		while(!stack.isEmpty()) {
-			for(int edge : adjLists[vertex]) {
-//				if()
-			}
-		}
-	}
-
 	void dfsX(int vertex) {
 		visited[vertex] = true;
 		p(vertex);
@@ -53,11 +43,30 @@ public class GraphX {
 				dfsX(adj);
 		}
 	}
+	void dfs(int vertex) {
+		visited[vertex] = true;
+		p(vertex);
+		for(int adj : adjLists[vertex])
+			if(!visited[adj])
+				dfs(adj);
+	}
+	// working with my own hash-set
+	Set<Integer> visitedSet = new HashSet<>();
+	void dfs(int vertex, HashSet<Integer> visited) {
+		visited.add(vertex);
+		p(vertex);
+		for(int adj : adjLists[vertex])
+			if(!visited.contains(adj))
+				dfs(adj, visited);
+	}
+	
 	
 	public static void main(String[] args) {
 		GraphX g = new GraphX(13);
 		init(g);
-		g.dfsX(1);
+//		g.dfs(1);
+//		g.dfsX(1);
+		g.dfs(1, new HashSet<Integer>());
 	}
 	private static void init(GraphX G) {
 		G.addEdge(0, 5);
