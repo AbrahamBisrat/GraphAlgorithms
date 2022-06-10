@@ -131,7 +131,7 @@ public class Graph {
 	}
 	
 	public static void main(String[] args) throws IOException{
-//		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
 //		file = new BufferedReader(new FileReader(args[0]));
 		
@@ -143,7 +143,8 @@ public class Graph {
 		BFS bfs = new BFS();
 		
 //		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
-		DFS.traverse(G, 0);
+//		DFS.traverse(G, 0);
+		DFS.traverseFromFirst(G);
 	}
 
 	private static void bfsTests(Graph G, BFS bfs) {

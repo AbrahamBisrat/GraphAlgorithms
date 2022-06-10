@@ -36,9 +36,24 @@ public class DFS {
 					stack.push(edge);
 					visited.add(edge);
 					traverse(graph, edge);
-				} 
+				}
 			}
 		}
 	}
 	
+	public static void traverseFromFirst(Graph graph) {
+		for(Bag<Integer> edgeList : graph.adj()) {
+			for(int edge : edgeList) {
+				if(!visited.contains(edge)) {
+					stack.push(edge);
+					visited.add(edge);
+				} else p(edge);
+			}
+		}
+	}
+	// simpler approach
+	public static void traverseR(Graph graph, int vertex) {
+		
+	}
+	private static void init() { stack.clear(); visited.clear(); }
 }
