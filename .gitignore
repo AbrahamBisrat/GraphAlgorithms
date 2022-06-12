@@ -1,2 +1,5 @@
 /src/graph/graphData/weighted/largeEWG.txt
 /bin
+.project
+.settings
+.classpath
