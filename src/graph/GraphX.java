@@ -50,7 +50,13 @@ public class GraphX {
 			if(!visited[adj])
 				dfs(adj);
 	}
-	// working with my own hash-set
+	void dfsCompCount() {
+		Set<Integer> visited = new HashSet<>();
+		for(List<Integer> adjList : adjLists) {
+			p(adjList);
+		}
+	}
+	// working with it's own hash-set
 	Set<Integer> visitedSet = new HashSet<>();
 	void dfs(int vertex, HashSet<Integer> visited) {
 		visited.add(vertex);
@@ -60,13 +66,13 @@ public class GraphX {
 				dfs(adj, visited);
 	}
 	
-	
 	public static void main(String[] args) {
 		GraphX g = new GraphX(13);
 		init(g);
 //		g.dfs(1);
 //		g.dfsX(1);
-		g.dfs(1, new HashSet<Integer>());
+//		g.dfs(1, new HashSet<Integer>());
+		g.dfsCompCount();
 	}
 	private static void init(GraphX G) {
 		G.addEdge(0, 5);
