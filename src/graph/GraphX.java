@@ -19,7 +19,7 @@ public class GraphX {
 	private boolean visited[];
 	
 	// Creation
-	GraphX(int vertices) {
+	public GraphX(int vertices) {
 		adjLists = new LinkedList[vertices];
 		visited = new boolean[vertices];
 		
@@ -27,9 +27,8 @@ public class GraphX {
 		for(int i = 0; i < adjLists.length; i++)
 			adjLists[i] = new LinkedList<Integer>();
 	}
-	
 	void addEdge(int src, int dst) { adjLists[src].add(dst); adjLists[dst].add(src); }
-	void addEdgeDirected(int src, int dst) { adjLists[src].add(dst); }
+	public void addEdgeDirected(int src, int dst) { adjLists[src].add(dst); }
 	
 	// Depth first search
 	void dfsX(int vertex) {
@@ -65,13 +64,21 @@ public class GraphX {
 			if(!visited.contains(adj))
 				dfs(adj, visited);
 	}
-	
+	public int V() { return adjLists.length; }
+	public List<Integer> adj(int vertex) { return adjLists[vertex]; }
+	public List<Integer>[] adjLists() { return adjLists; }
+	@Override public String toString() {
+		String output = "";
+		for(int i = 0; i < adjLists.length; i++)
+			output += i + " : " + adjLists[i].toString() + "\n";
+		return output;
+	}
 	public static void main(String[] args) {
 		GraphX g = new GraphX(13);
 		init(g);
-//		g.dfs(1);
-//		g.dfsX(1);
-//		g.dfs(1, new HashSet<Integer>());
+		g.dfs(1);
+		g.dfsX(1);
+		g.dfs(1, new HashSet<Integer>());
 		g.dfsCompCount();
 	}
 	private static void init(GraphX G) {
