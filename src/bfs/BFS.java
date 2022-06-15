@@ -1,11 +1,14 @@
 package bfs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 import bag.Bag;
 import graph.Graph;
@@ -107,6 +110,42 @@ public class BFS {
 		for(int v=0; v<graph.V(); v++)
 			adjList.put(v, graph.adj(v));
 		return adjList;
+	}
+	/**
+	 * Implementation of bfs with depth of traversal limitation
+	 * 
+	 * @param g
+	 * @param src
+	 * @param d
+	 * @param desired -> do you want just the values on that depth or the whole 
+	 * 					 thing upto that part? - true = all;
+	 * @return List<Integer> items contained within the treaversal depth reach of d
+	 */
+	public List<Integer> bfs(final Graph g, final int src, int depth, boolean desired) {
+		if(g==null || depth < 1) throw new IllegalArgumentException("Invalid input");
+		Queue<Integer> queue = new LinkedList<>();
+		Set<Integer> visited = new HashSet<>();
+		List<Integer> resultSet = new ArrayList<>();
+		int level = 0;
+		queue.add(src);
+		int current;
+		int levelSize = 0;
+		while(!queue.isEmpty() && level < depth) {
+			levelSize = queue.size();
+			while(levelSize-- != 0) {
+				current = queue.poll();
+				visited.add(current);
+				for(int vertice : g.adj(current)) {
+					if(!visited.contains(vertice)) {
+						visited.add(vertice);
+						queue.add(vertice);
+						resultSet.add(vertice);
+					}
+				}
+			}
+			level++;
+		}
+		return desired ? resultSet : new ArrayList<>(queue);
 	}
 }
 

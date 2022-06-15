@@ -142,9 +142,9 @@ public class Graph {
 //		p(G);
 		BFS bfs = new BFS();
 		
-//		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
+		util.Analyzer.benchmark(placeholder -> bfsTests(G, bfs));
 //		DFS.traverse(G, 0);
-		DFS.traverseFromFirst(G);
+//		DFS.traverseFromFirst(G);
 	}
 
 	private static void bfsTests(Graph G, BFS bfs) {
@@ -158,6 +158,8 @@ public class Graph {
 		Map<Integer, Bag<Integer>> adjList = bfs.matrixToList(G);
 		adjListToString(adjList);
 		p(bfs.hasLoop(G));
+		
+		p(bfs.bfs(G, 0, 2, false));
 	}
 
 	@SuppressWarnings("unused")
