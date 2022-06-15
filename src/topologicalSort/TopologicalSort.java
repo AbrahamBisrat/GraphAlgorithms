@@ -10,25 +10,10 @@ import graph.GraphX;
 
 public class TopologicalSort {
 	public static void p(Object line) { System.out.println(line); }
-	public static void topologicalSort(GraphX g) {
-		boolean[] marked = new boolean[g.V()];
-		Stack<Integer> reversePost = new Stack<>();
-		for(int v = 0; v < g.V(); v++)
-			if(!marked[v]) dfs(g, v, marked, reversePost);
-
-		printStack(reversePost);
-	}
 	private static void printStack(Stack<Integer> reversePost) {
 		ArrayList<Integer> resultSet = new ArrayList<>(reversePost);
 		Collections.reverse(resultSet);
 		p("\n\n" + resultSet);
-	}
-	private static void dfs(GraphX g, int v, boolean[] marked, Stack<Integer> reversePost) {
-		marked[v]=true;
-		for(int w : g.adj(v))
-			if(!marked[w])
-				dfs(g, w, marked, reversePost);
-		reversePost.push(v);
 	}
 	private static Stack<Integer> reverseList = new Stack<>();
 	private static Set<Integer> visited = new HashSet<>();
@@ -50,12 +35,11 @@ public class TopologicalSort {
 		initTopologicalSort(G);
 		p(G);
 		topSort(G);
-		topologicalSort(G);
 	}
 	private static void initTopologicalSort(GraphX g) {
 		g.addEdgeDirected(0, 1);
 		g.addEdgeDirected(0, 2);
-		g.addEdgeDirected(0, 5) ;
+		g.addEdgeDirected(0, 5);
 		g.addEdgeDirected(5, 2);
 		g.addEdgeDirected(6, 0);
 		g.addEdgeDirected(6, 4);
