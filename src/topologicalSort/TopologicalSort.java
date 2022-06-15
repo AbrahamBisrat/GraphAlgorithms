@@ -13,7 +13,7 @@ public class TopologicalSort {
 	private static void printStack(Stack<Integer> reversePost) {
 		ArrayList<Integer> resultSet = new ArrayList<>(reversePost);
 		Collections.reverse(resultSet);
-		p("\n\n" + resultSet);
+		p("\n" + resultSet);
 	}
 	private static Stack<Integer> reverseList = new Stack<>();
 	private static Set<Integer> visited = new HashSet<>();
